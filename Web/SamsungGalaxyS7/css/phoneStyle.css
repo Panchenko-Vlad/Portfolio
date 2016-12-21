@@ -1,0 +1,20 @@
+body {
+    margin: 0;
+
+  -webkit-box-shadow: 0px 0px 10px rgba(0,0,0,.8);
+  -moz-box-shadow: 0px 0px 10px rgba(0,0,0,.8);
+  box-shadow: 0px 0px 10px rgba(0,0,0,.8);
+  }
+
+}
+
+.photo {
+
+}
+
+img {
+    background: white;
+    padding: 5vw;
+    width: 87vw;
+    height: 100%;
+}

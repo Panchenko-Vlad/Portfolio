@@ -1,0 +1,96 @@
+@import "fonts"
+@import "libs"
+@import "vars"
+
+// Миксин для определения расстояния между символами
+@mixin kerning($kerning)
+	letter-spacing: $kerning + px
+
+// Цвета при выделении
+::selection
+	background-color: #000
+	color: #fff
+
+*::-webkit-input-placeholder
+	color: $placeholder_color
+	opacity: 1
+
+*:-moz-placeholder
+	color: $placeholder_color
+	opacity: 1
+
+*::-moz-placeholder
+	color: $placeholder_color
+	opacity: 1
+
+*:-ms-input-placeholder
+	color: $placeholder_color
+	opacity: 1
+
+body
+	font-size: 14px
+	min-width: 320px
+	min-height: 480px
+	position: relative
+	line-height: 1.75
+	font-family: $default-font
+	overflow-x: hidden
+	+kerning(1)
+	p
+	  color: $text_color
+
+.img-responsive
+	display: block
+	max-width: 100%
+	height: auto
+
+.color_element
+  color: $color
+
+hr
+  height: 2px
+  background: rgba(240, 47, 23, 1) linear-gradient(left, rgba(240, 47, 23, 1) 0%, rgba(234, 68, 53, 1) 25%, rgba(251, 189, 5, 1) 25%, rgba(251, 189, 5, 1) 50%, rgba(52, 168, 83, 1) 50%, rgba(52, 168, 83, 1) 75%, rgba(66, 134, 244, 1) 75%, rgba(66, 133, 244, 1) 100%)
+
+.form-control:focus
+  border-color: $color
+
+.contact-form
+  margin-top: 40px
+  h2
+    text-align: center
+    img
+      width: 35px
+      height: auto
+      margin-left: 2px
+  input
+    &[type='submit']
+      margin-top: 10px
+  p
+    margin-top: 10px
+
+.table
+  border: none
+  h5, caption, th, td
+    text-align: center
+  th, td
+    border: 1px solid #ddd
+  form
+    display: inline-block
+    margin-left: 5px
+  button
+    padding: 10px
+    transition: .2s
+  .columnDel
+    border: 0
+    width: 103px
+    padding-left: 0
+
+#text-error
+  //font-weight: bold
+  font-size: 11px
+  color: red
+  list-style-type: none
+  margin-top: 5px
+  margin-left: 5px
+
+@import "media" // Всегда в конце

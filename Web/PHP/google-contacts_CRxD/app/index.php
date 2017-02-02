@@ -89,7 +89,7 @@ include 'php/createContact.php';
 <head>
 	<meta charset="utf-8">
 
-	<title>Тестовое задание</title>
+	<title>Google Contacts</title>
 	<meta name="description" content="">
 
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -137,12 +137,11 @@ include 'php/createContact.php';
                         </div>
                 </div>
             </div>
+
+            <hr />
+
             <div class="row">
                 <div class="col-xs-12 table">
-
-                    <br />
-
-                    <hr />
 
                     <?php if (!empty($google_contacts)): ?>
                         <table class="table-bordered table-striped table">
@@ -171,6 +170,7 @@ include 'php/createContact.php';
                                             <input type='text' name='linkWithId' value='<?php echo $contact['linkWithId']; ?>' style='display: none'>
                                             <input type='text' name='etag' value='<?php echo $contact['etag']; ?>' style='display: none'>
                                             <input type='submit' name="formDelete" value='Удалить' class="btn btn-danger">
+<!--                                            <input type='submit' name="formDelete" value='Удалить' class="btn btn-link">-->
                                         </form>
                                     </td>
                                 </tr>

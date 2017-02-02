@@ -48,7 +48,7 @@ body
   color: $color
 
 hr
-  height: 2px
+  height: 3px
   background: rgba(240, 47, 23, 1) linear-gradient(left, rgba(240, 47, 23, 1) 0%, rgba(234, 68, 53, 1) 25%, rgba(251, 189, 5, 1) 25%, rgba(251, 189, 5, 1) 50%, rgba(52, 168, 83, 1) 50%, rgba(52, 168, 83, 1) 75%, rgba(66, 134, 244, 1) 75%, rgba(66, 133, 244, 1) 100%)
 
 .form-control:focus
@@ -56,8 +56,10 @@ hr
 
 .contact-form
   margin-top: 40px
+  margin-bottom: 10px
   h2
     text-align: center
+    margin-bottom: 0
     img
       width: 35px
       height: auto
@@ -69,6 +71,7 @@ hr
     margin-top: 10px
 
 .table
+  margin-top: 0
   border: none
   h5, caption, th, td
     text-align: center
@@ -84,6 +87,14 @@ hr
     border: 0
     width: 103px
     padding-left: 0
+    //&[type="submit"]
+    //  color: red
+    //  margin-right: -10px
+    //  &:hover
+    //    color: red
+    //    font-weight: bold
+    //  &:focus
+    //    border: none
 
 #text-error
   //font-weight: bold

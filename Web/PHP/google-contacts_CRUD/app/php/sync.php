@@ -65,7 +65,7 @@ if(isset($_SESSION['google_code'])) {
     $url = 'https://www.google.com/m8/feeds/contacts/default/full?max-results=' . $max_results . '&alt=json&v=3.0&oauth_token=' . $_SESSION['access_token'];
     // ВЫПОЛНЯЕМ ЗАПРОС И ПОЛУЧАЕМ ОТВЕТ В ФОРМАТЕ JSON
     $xmlResponse = curl($url);
-    // ПЕРЕВОДИМ JSON В ARRAY
+    // ПОЛУЧАЕМ ИЗ JSON ФОРМАТ XML
     $contacts = json_decode($xmlResponse, true);
 
     // ЗАПИСЫВАЕМ В СЕССИЮ АДРЕС ЭЛЕКТРОННОЙ ПОЧТЫ ПОЛЬЗОВАТЕЛЯ
@@ -77,6 +77,7 @@ if(isset($_SESSION['google_code'])) {
         foreach ($contacts['feed']['entry'] as $contact) {
 
             // ПОЛУЧАЕМ НЕОБХОДИМЫЕ НАМ ДАННЫЕ О КОНТАКТЕ
+            $id = $contact['id']['$t'];
             $firstName = !empty($contact['gd$name']['gd$givenName']['$t']) ? $contact['gd$name']['gd$givenName']['$t'] : ' - ';
             $lastName = !empty($contact['gd$name']['gd$familyName']['$t']) ? $contact['gd$name']['gd$familyName']['$t'] : ' - ';
             $phone = !empty($contact['gd$phoneNumber'][0]['$t']) ? $contact['gd$phoneNumber'][0]['$t'] : ' - ';
@@ -99,6 +100,7 @@ if(isset($_SESSION['google_code'])) {
                 'lastName' => $lastName,
                 'phone' => $phone,
                 'email' => $email,
+                'id' => $id,
                 'etag' => $etag,
                 'linkWithId' => $linkWithId
             ];

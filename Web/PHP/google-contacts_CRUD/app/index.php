@@ -76,9 +76,7 @@ if (isset($_GET['submit'])) {
     $data['phone'] = $_GET['phone'];
 }
 
-// ФАЙЛ ДЛЯ СИНХРОНИЗАЦИИ С GOOGLE АККАУНТОМ И ПОЛУЧЕНИЕМ ВСЕХ КОНТАКТОВ
 include 'php/sync.php';
-// ФАЙЛ ДЛЯ СОЗДАНИЯ НОВОГО КОНТАКТА
 include 'php/createContact.php';
 
 ?>
@@ -141,10 +139,10 @@ include 'php/createContact.php';
             <hr />
 
             <div class="row">
-                <div class="col-xs-12 table">
+                <div class="col-xs-12 table-wrapper">
 
                     <?php if (!empty($google_contacts)): ?>
-                        <table class="table-bordered table-striped table">
+                        <table id="table" class="table-bordered table-striped table">
                             <caption>Все контакты
                                 <form action="php/export.php" method="post">
                                     <input type='text' name='contacts' value='<?php echo serialize($google_contacts); ?>' style='display: none'>
@@ -157,6 +155,7 @@ include 'php/createContact.php';
                                 <th>Фамилия</th>
                                 <th>Телефон</th>
                                 <th>E-mail</th>
+                                <th>Доп.</th>
                             </tr>
 
                             <?php foreach ($google_contacts as $contact): ?>
@@ -166,11 +165,20 @@ include 'php/createContact.php';
                                     <td><?php echo $contact['phone']; ?></td>
                                     <td><?php echo $contact['email']; ?></td>
                                     <td class="columnDel">
+                                        <form action="php/updateContact.php" method="post">
+                                            <input type="text" name="id" value='<?php echo $contact['id']; ?>' style='display: none'/>
+                                            <input type="text" name="firstName" value='<?php echo $contact['firstName']; ?>' style='display: none'/>
+                                            <input type="text" name="lastName" value='<?php echo $contact['lastName']; ?>' style='display: none'/>
+                                            <input type="text" name="phone" value='<?php echo $contact['phone']; ?>' style='display: none'/>
+                                            <input type="text" name="email" value='<?php echo $contact['email']; ?>' style='display: none'/>
+                                            <input type='text' name='linkWithId' value='<?php echo $contact['linkWithId']; ?>' style='display: none'>
+                                            <input type='text' name='etag' value='<?php echo $contact['etag']; ?>' style='display: none'>
+                                            <input type='submit' name="formUpdate" value='Редактировать' class="btn btn-link">
+                                        </form>
                                         <form action="php/deleteContact.php" method="post">
                                             <input type='text' name='linkWithId' value='<?php echo $contact['linkWithId']; ?>' style='display: none'>
                                             <input type='text' name='etag' value='<?php echo $contact['etag']; ?>' style='display: none'>
-                                            <input type='submit' name="formDelete" value='Удалить' class="btn btn-danger">
-<!--                                            <input type='submit' name="formDelete" value='Удалить' class="btn btn-link">-->
+                                            <input type='submit' name="formDelete" value='Удалить' class="btn btn-link">
                                         </form>
                                     </td>
                                 </tr>
@@ -178,15 +186,17 @@ include 'php/createContact.php';
 
                             </tbody>
                         </table>
-                    <?php else: ?>
+                    <?php elseif (!isset($_SESSION['access_token'])): ?>
                         <h5>
                             <a href="<?php echo $googleImportUrl; ?>">
                                 <button type="button" class="btn btn-default">Синхронизация с Google</button>
                             </a>
                         </h5>
+                    <?php elseif (isset($_SESSION['access_token']) && empty($google_contacts)): ?>
+                        <h5 class="emptyContacts">Нет контактов!</h5>
                     <?php endif; ?>
                     <?php if (isset($_SESSION['access_token'])): ?>
-                    <h5>
+                    <h5 class="logout">
                         <a href='https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=<?php echo $google_redirect_uri; ?>?logout'>Выйти из аккаунта</a>
                     </h5>
                     <?php endif; ?>

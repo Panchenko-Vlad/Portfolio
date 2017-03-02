@@ -3,7 +3,7 @@
 session_start();
 
 // ЕСЛИ ПОЛЬЗОВАТЕЛЬ НАЖАЛ НА КНОПКУ УДАЛИТЬ, ТО ПОЛУЧАЕМ ЛИЧНЫЕ ДАННЫЕ КОНТАКТА И ВЫПОЛНЯЕМ ЗАПРОС НА УДАЛЕНИЕ
-if (isset($_POST['formDelete'])) {
+if (isset($_POST['formUpdate'])) {
 
     $url = $_POST['linkWithId'];
     $etag = $_POST['etag'];
@@ -27,12 +27,14 @@ if (isset($_POST['formDelete'])) {
     curl_setopt($ch, CURLOPT_USERAGENT, $userAgent);
     curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); // Отключаем peer, для загрузки страницы по https
-    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false); // Отключаем host, для загрузки страницы по https
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
     curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
     curl_setopt($ch, CURLOPT_TIMEOUT, 400);
 
     $result = curl_exec($ch);
+
+    curl_close($ch);
 
     header("Location: ../index.php");
 } else {

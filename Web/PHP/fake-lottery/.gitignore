@@ -1,0 +1,6 @@
+/node_modules/
+/dist/
+/template/css/
+/template/js/scripts.min.js
+/**/*.psd
+/**/Thumbs.db

@@ -1,0 +1,96 @@
+//@import "bourbon"
+@import "vars"
+
+
+// Все медиа-запросы пишем сдесь.
+
+
+/*==========  Desktop First  ==========*/
+
+/* Large Devices, Wide Screens */
+@media only screen and (max-width : 1200px)
+  section
+    .lottery
+      .winner-wrapper
+        #winner
+          height: 380px
+          h1
+            font-size: 45px
+            padding-top: 120px
+
+
+/* Medium Devices, Desktops */
+@media only screen and (max-width : 992px)
+  section
+    .lottery
+      .winner-wrappers
+        #winner
+          height: 360px
+          h1
+            font-size: 40px
+            padding-top: 115px
+
+
+
+/* Small Devices, Tablets */
+@media only screen and (max-width : 768px)
+  section
+    .lottery
+      #timer
+        font-size: 45px
+      .winner-wrapper
+        #winner
+          height: 300px
+          h1
+            font-size: 25px
+            padding-top: 100px
+    .list-gamers
+      .gamer
+        .gamer-photo
+          width: 100px
+          height: 100px
+        .info
+          .guns-wrapper
+            .gamer-guns
+              margin-top: 20px
+              li
+                width: 55px
+                height: 55px
+                &.price
+                  font-size: 25px
+
+
+/* Extra Small Devices, Phones */
+@media only screen and (max-width : 500px)
+    /**/
+
+/* Custom, iPhone Retina */
+@media only screen and (max-width : 320px)
+	/**/
+
+
+/*==========  Mobile First  ==========*/
+
+/* Custom, iPhone Retina */
+@media only screen and (min-width : 320px)
+	/**/
+
+
+/* Extra Small Devices, Phones */
+@media only screen and (min-width : 480px)
+	/**/
+
+
+/* Small Devices, Tablets */
+@media only screen and (min-width : 768px)
+	/**/
+
+
+/* Medium Devices, Desktops */
+@media only screen and (min-width : 992px)
+	/**/
+
+
+/* Large Devices, Wide Screens */
+@media only screen and (min-width : 1200px)
+	/**/

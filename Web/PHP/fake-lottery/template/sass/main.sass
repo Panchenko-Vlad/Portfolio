@@ -1,0 +1,767 @@
+//@import "bourbon"
+@import "fonts"
+@import "libs"
+@import "vars"
+
+// Миксин для определения расстояния между символами
+@mixin kerning($kerning)
+  letter-spacing: $kerning + px
+
+// Цвета при выделении
+::selection
+  background-color: $color
+  color: #fff
+
+*::-webkit-input-placeholder
+  color: $placeholder_color
+  opacity: 1
+
+*:-moz-placeholder
+  color: $placeholder_color
+  opacity: 1
+
+*::-moz-placeholder
+  color: $placeholder_color
+  opacity: 1
+
+*:-ms-input-placeholder
+  color: $placeholder_color
+  opacity: 1
+
+body input:focus:required:invalid,
+body textarea:focus:required:invalid
+  color: red
+
+body input:required:valid,
+body textarea:required:valid
+  color: green
+
+*
+  box-sizing: border-box
+  margin: 0
+  padding: 0
+
+html, body
+  height: 100%
+
+.page-wrapper
+  min-height: 100%
+  margin-bottom: -80px
+
+body
+  font-size: 14px
+  min-width: 500px
+  min-height: 480px
+  background-color: $main_color
+  position: relative
+  line-height: 1.75
+  font-family: $default-font
+  overflow-x: hidden
+  +kerning(1)
+  color: $text_color
+  li
+    list-style-type: none
+
+.img-responsive
+  display: block
+  max-width: 100%
+  height: auto
+
+// Класс, какой добавляется для элементов каким необходимо установить главный цвет сайта
+.color_element
+  color: $color
+
+hr
+  border-top: 1px solid $color
+
+.form-control:focus
+  border-color: $color
+
+// Стили для блока в случае если окно браузера не активное
+
+.browserTabNoActive
+  display: none
+  position: fixed
+  width: 100%
+  height: 100%
+  margin-top: -120px
+  background-color: rgba(0,0,0,.8)
+  z-index: 10000
+  h2
+    display: table-cell
+    text-align: center
+    vertical-align: middle
+    color: $color
+    font-size: 20px
+    +kerning(2)
+
+// LOADER FOR LOTTERY
+
+#circularG
+  position: relative
+  width: 83px
+  height: 83px
+  margin: 50px auto 0 auto
+
+.circularG
+  position: absolute
+  background-color: $color
+  width: 19px
+  height: 19px
+  border-radius: 12px
+  animation-name: bounce_circularG
+  animation-duration: 1.1s
+  animation-iteration-count: infinite
+  animation-direction: normal
+
+#circularG_1
+  left: 0
+  top: 33px
+  animation-delay: 0.41s
+
+#circularG_2
+  left: 8px
+  top: 8px
+  animation-delay: 0.55s
+
+#circularG_3
+  top: 0
+  left: 33px
+  animation-delay: 0.69s
+
+#circularG_4
+  right: 8px
+  top: 8px
+  animation-delay: 0.83s
+
+#circularG_5
+  right: 0
+  top: 33px
+  animation-delay: 0.97s
+
+#circularG_6
+  right: 8px
+  bottom: 8px
+  animation-delay: 1.1s
+
+#circularG_7
+  left: 33px
+  bottom: 0
+  animation-delay: 1.24s
+
+#circularG_8
+  left: 8px
+  bottom: 8px
+  animation-delay: 1.38s
+
+@keyframes bounce_circularG
+  0%
+    transform: scale(1)
+  100%
+    transform: scale(.3)
+
+// HEADER & FOOTER
+
+header
+  background-color: $main_color
+  width: 100%
+  height: auto
+  margin-bottom: 40px
+  border-bottom: 3px solid $color
+  //border-bottom-left-radius: 25px
+  border-bottom-right-radius: 25px
+  .menu-block
+    display: none
+    position: absolute
+    margin-top: 78px
+    z-index: 1000
+    li
+      //float: left
+      margin-top: 0
+      a
+        text-align: center
+        display: block
+        width: 150px
+        border-bottom: 1px solid $color
+        background-color: rgba(0,0,0,.8)
+        padding: 15px 15px 15px 15px
+        color: $color
+        font-weight: bold
+        &:hover
+          color: #fff
+          transition: .4s
+          text-decoration: none
+        i
+          margin-left: 10px
+      &:first-child a
+        border-top-right-radius: 5px
+  .menu-navicon
+    background-color: $color
+    height: 75px
+    width: 98px
+    margin-left: -13px
+    transform: skewX(-20deg)
+    //border-bottom-left-radius: 22px
+    cursor: pointer
+    //box-shadow: 3px -2px 3px 0 black
+    i
+      transform: skewX(20deg)
+      padding: 20px 22px
+      font-size: 35px
+      color: $main_color
+    &:hover
+      i
+        color: #fff
+        transition: .4s
+  .menu-elements
+    width: auto
+    padding-right: 0
+    li
+      float: left
+      border-right: 3px solid $color
+      transform: skewX(-20deg)
+      padding-left: 3px
+      &:first-child
+        background-color: $color
+        border-bottom-left-radius: 15px
+        padding-left: 20px
+        margin-left: -30px
+        a
+          color: $main_color
+      a
+        color: $color
+        padding: 25px 20px 25px 15px
+        float: left
+        font-size: 16px
+        font-weight: bold
+        text-decoration: none
+        transition: .2s
+        transform: skewX(20deg)
+        +kerning(2)
+        &:hover
+          color: #fff
+          transition: .4s
+        i
+          position: relative
+          top: 1px
+          font-size: 18px
+          margin-left: 7px
+  .info-user
+    float: right
+    width: auto
+    padding: 0
+    margin: 10px 25px 0 0
+    .photo
+      float: right
+      width: 55px
+      height: 55px
+      border-radius: 50%
+      background-size: cover
+      background-repeat: no-repeat
+      background-position: center
+      margin-left: 15px
+      box-shadow: 0 1px 2px 1px black
+      z-index: 10
+    .syncSteam
+      margin-top: 10px
+    .info, .syncSteam
+      float: right
+      .user-name
+        margin-top: 12px
+        float: right
+        font-size: 18px
+        color: $color
+        max-width: 270px
+        text-overflow: ellipsis
+        overflow: hidden
+        +kerning(1)
+      a button
+        float: right
+        min-width: 130px
+        width: 100%
+        background-color: $color
+        color: #fff
+        font-weight: bold
+        transition: .2s
+        +kerning(2)
+        &:hover
+          background-color: $colorMedium
+          transition: .4s
+        &:active
+          background-color: $colorHigh
+          transition: .2s
+        i
+          margin-left: 5px
+  .logout
+    display: none
+    position: absolute
+    width: 100%
+    z-index: 9
+    a
+      float: right
+      color: $colorHigh
+      font-size: 14px
+      font-weight: bold
+      margin-right: 27px
+      margin-top: 10px
+
+footer
+  height: 80px
+  background-color: #444
+  border-top: 3px solid $color
+  .copyright
+    float: left
+    margin-top: 28px
+    padding-left: 25px
+    color: #888
+  //.social-wrapper
+  .social-icons
+    margin-top: 25px
+    padding-right: 15px
+    float: right
+    li
+      float: left
+      font-size: 18px
+      margin-right: 15px
+      &:last-child
+        margin-right: 0
+      i
+        color: $color
+        transition: .2s
+        &:hover
+          color: #fff
+          transition: .4s
+
+// ГЛАВНАЯ СТРАНИЦА
+
+section
+  .deposit
+    margin-top: -40px
+    transition: .4s
+    z-index: 10
+    a:hover, a:focus
+      text-decoration: none
+    .btn-deposit
+      width: 100%
+      border-top: 40px solid $color
+      //border-top: 40px solid #444
+      border-left: 50px solid transparent
+      border-right: 50px solid transparent
+      height: 0
+      cursor: pointer
+      transition: .4s
+      h4
+        text-align: center
+        color: $main_color
+        //color: #666
+        font-weight: bold
+        margin: -40px 0 0 0
+        padding: 10px 15px
+        font-size: 16px
+        transition: .4s
+      &:hover
+        border-top-color: $colorMedium
+        //border-top-color: $color
+        transition: .4s
+        h4
+          color: #fff
+          transition: .4s
+      &:active
+        border-top-color: $colorHigh
+        transition: .4s
+
+  .lottery
+    background-color: $main_color
+    padding-bottom: 5px
+    h1
+      font-family: 'exo-2.0', $default-font, sans-serif
+      font-size: 50px
+      text-align: center
+      color: #fff
+      margin-bottom: 15px
+      +kerning(2)
+    .main-line-wrapper
+      h5
+        color: $color
+        text-align: center
+        margin-top: 20px
+        margin-bottom: 0
+    .sum-price-wrapper
+      h2
+        color: $color
+        text-align: center
+        font-size: 35px
+        margin: 50px 0
+        +kerning(2)
+        .before
+          font-size: 50px
+      .hr-top
+        border: 1px solid $color
+      hr
+        border: 3px solid $color
+        margin-top: 25px
+        margin-bottom: 0
+        border-radius: 5px
+
+    .winner-wrapper
+      padding: 0
+      #winner
+        background-color: #000
+        color: #fff
+        width: 100%
+        height: 400px
+        padding: 15px 10px
+        cursor: default
+        user-select: none
+        h1
+          font-family: 'exo-2.0', $default-font, sans-serif
+          padding-top: 125px
+          text-overflow: ellipsis
+          overflow: hidden
+          color: inherit
+          cursor: inherit
+          user-select: none
+          +kerning(9)
+
+section
+  .list-gamers
+    background-color: $main_color
+    padding: 0 25px
+    margin-bottom: 150px
+    hr
+      border: 1px solid $color
+      border-radius: 5px
+      margin: 0 -10px
+      clear: both
+    .gamer
+      padding: 15px 20px 0 20px
+      margin-top: 15px
+      border-radius: 15px 15px 50px 15px
+      border: 2px solid $main_color
+      .gamer-photo
+        float: left
+        width: 120px
+        height: 120px
+        border-radius: 50%
+        background-repeat: no-repeat
+        background-size: cover
+        background-position: center
+        margin: 0 25px 25px 0
+        box-shadow: 0 2px 5px 2px black
+      .indicateWinner
+        margin-top: 78%
+        margin-left: 0
+        width: 100%
+        background-color: $color
+        color: #fff
+        padding: 4px 0
+        +kerning(1)
+        &:hover
+          background-color: $colorMedium
+        &:active
+          background-color: $colorHigh
+      .info
+        margin-top: -10px
+        .gamer-name
+          color: $color
+          font-size: 20px
+        .percent-wrapper
+          font-size: 20px
+          color: $color
+          float: right
+        .guns-wrapper
+          display: flex
+          .gamer-guns
+            margin-top: 20px
+            li
+              float: left
+              background-image: url(/upload/images/no-image.jpg)
+              background-size: cover
+              background-position: center
+              background-repeat: no-repeat
+              margin-bottom: 50px
+              margin-right: 15px
+              width: 70px
+              height: 70px
+              border-radius: 10px
+              p.price
+                font-size: 18px
+                color: $color
+                text-align: center
+                margin-top: 110%
+                //font-weight: bold
+              &.price
+                background-image: none
+                width: auto
+                color: $color
+                margin-top: 5px
+                margin-bottom: 0
+                font-size: 35px
+
+
+// СТРАНИЦА "О САЙТЕ"
+
+section
+  .about
+    font-size: 16px
+    margin-bottom: 150px
+    h4
+      text-align: center
+      color: $color
+      font-weight: bold
+      margin-bottom: 50px
+      +kerning(2)
+    h3
+      color: $color
+    li
+      list-style-type: disc
+      margin: 0 20px 15px 20px
+
+// СТРАНИЦА "ИСТОРИЯ" И "ТОП ИГРОКОВ"
+
+section
+  .history, .topGamers, .list
+    margin-bottom: 150px
+    h2
+      text-align: center
+      color: $color
+      margin-bottom: 30px
+    table
+      margin-top: 50px
+      margin-bottom: 20px
+      width: 100%
+      border: 2px solid $color
+      th, td, caption
+        text-align: center
+      caption
+        font-size: 25px
+        color: $color
+        font-weight: bold
+        margin-bottom: 10px
+      th
+        font-size: 20px
+        padding: 15px 10px
+        color: $color
+      td
+        color: #fff
+        font-size: 18px
+        padding: 10px 10px
+
+// СТРАНИЦА "НАСТРОЙКИ"
+
+section
+  .settings
+    margin-bottom: 150px
+    h2
+      text-align: center
+      color: $color
+      margin-bottom: 30px
+    h5
+      color: $text_color
+      font-style: italic
+      margin-bottom: 15px
+      .steam_link
+        color: $color
+        //font-size: 16px
+    form
+      input[type='url']
+        height: 45px
+        &::-webkit-input-placeholder
+          font-style: italic
+          color: $main_color
+      button
+        float: right
+        margin-top: 10px
+        min-width: 130px
+        background-color: $color
+        color: #fff
+        transition: .2s
+        +kerning(1)
+        &:hover
+          background-color: #d65139
+          color: #fff
+          transition: .4s
+        &:focus
+          color: #fff
+        &:active
+          background-color: #c94e38
+          transition: .2s
+        i
+          margin-left: 5px
+
+.message-error
+  font-size: 12px
+  color: $color
+  float: left
+  margin: 10px 5px
+
+// СТРАНИЦА "ВХОД В АДМИН-ПАНЕЛЬ"
+
+section
+  .login
+    h2
+      text-align: center
+      color: $color
+      i
+        margin-left: 10px
+    .text-error
+      margin: 20px 0
+      li
+        color: $color
+    form
+      input
+        margin-bottom: 10px
+        &::-webkit-input-placeholder
+          +kerning(1)
+          font-style: italic
+        &[type="submit"]
+          margin-top: 10px
+          margin-bottom: 150px
+          float: right
+          width: 130px
+          +kerning(2)
+          background-color: $color
+          color: #fff
+          font-weight: bold
+          border: none
+          transition: .2s
+          &:hover
+            background-color: $colorMedium
+            transition: .4s
+          &:active
+            background-color: $colorHigh
+            transition: .2s
+          &:focus
+            color: #fff
+
+// СТРАНИЦА "КАБИНЕТ АДМИНА"
+
+section
+  .cabinet
+    h2
+      text-align: center
+      color: $color
+      i
+        margin-left: 10px
+    li
+      list-style-type: disc
+      color: $color
+      margin: 10px 0 10px 20px
+      a
+        color: $color
+
+// СТРАНИЦА "ДОБАВИТЬ ПОЛЬЗОВАТЕЛЯ"
+
+section
+  .add_user
+    text-align: center
+    color: $color
+    i
+      margin-left: 10px
+    .text-error
+      margin: 20px 0
+    .text-success
+      margin: 20px 0
+      color: #4cae4c
+    form
+      input
+        margin-bottom: 10px
+        &::-webkit-input-placeholder
+          +kerning(1)
+          font-style: italic
+        &[type="submit"]
+          margin-top: 5px
+          margin-bottom: 150px
+          float: right
+          width: 130px
+          +kerning(2)
+          background-color: $color
+          color: #fff
+          font-weight: bold
+          border: none
+          transition: .2s
+          &:hover
+            background-color: $colorMedium
+            transition: .4s
+          &:active
+            background-color: $colorHigh
+            transition: .2s
+          &:focus
+            color: #fff
+        &[type="file"]
+          button
+            padding: 10px
+
+// bootstrap checkbox
+//.checkbox
+//  float: left
+//  margin-left: -20px
+//  margin-top: 0
+//  label:after
+//    content: ''
+//    display: table
+//    clear: both
+//
+//.checkbox .cr
+//  position: relative
+//  display: inline-block
+//  border: 1px solid #a9a9a9
+//  border-radius: .25em
+//  width: 1.3em
+//  height: 1.3em
+//  float: left
+//  margin-right: .5em
+//  margin-top: .2em
+//
+//.checkbox .cr .cr-icon
+//  position: absolute
+//  font-size: 1em
+//  line-height: 0
+//  top: 50%
+//  left: -55%
+//
+//.checkbox label input[type="checkbox"]
+//  display: none
+//
+//.checkbox label input[type="checkbox"] + .cr > .cr-icon
+//  transform: scale(3) rotateZ(-20deg)
+//  opacity: 0
+//  transition: all .3s ease-in
+//
+//.checkbox label input[type="checkbox"]:checked + .cr > .cr-icon
+//  transform: scale(1) rotateZ(0deg)
+//  opacity: 1
+//
+//.checkbox label input[type="checkbox"]:disabled + .cr
+//  opacity: .5
+
+// СТРАНИЦА "СПИСОК ВСЕХ ПОЛЬЗОВАТЕЛЕЙ"
+
+section
+  .list
+    form
+      input[type="submit"]
+        color: $colorHigh
+
+// DEADLINE
+
+section
+  #deadline
+    background-color: #000
+    width: 100vw
+    height: 100vh
+    h1
+      color: #444
+      font-family: 'exo-2.0', $default-font, sans-serif
+      text-align: center
+      &#deadlineText
+        font-size: 12vw
+        text-transform: uppercase
+        text-decoration: underline
+        margin-top: 70px
+        margin-bottom: 70px
+      &#deadlineTime
+        font-size: 10vw
+
+@import "media"
+// Всегда в конце

@@ -1,0 +1,117 @@
+<?php
+
+namespace app\models;
+
+use Yii;
+
+/**
+ * This is the model class for table "comment".
+ *
+ * @property integer $id
+ * @property string $text
+ * @property integer $user_id
+ * @property integer $article_id
+ * @property integer $status
+ * @property string $date
+ *
+ * @property Article $article
+ * @property User $user
+ */
+class Comment extends \yii\db\ActiveRecord
+{
+    const STATUS_ALLOW = 1;
+    const STATUS_DISALLOW = 0;
+
+    /**
+     * @inheritdoc
+     */
+    public static function tableName()
+    {
+        return 'comment';
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function rules()
+    {
+        return [
+            [['text'], 'string'],
+            [['user_id', 'article_id', 'status'], 'integer'],
+            [['date'], 'safe'],
+            [['article_id'], 'exist', 'skipOnError' => true, 'targetClass' => Article::className(), 'targetAttribute' => ['article_id' => 'id']],
+            [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
+        ];
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function attributeLabels()
+    {
+        return [
+            'id' => 'ID',
+            'text' => 'Text',
+            'user_id' => 'User ID',
+            'article_id' => 'Article ID',
+            'status' => 'Status',
+            'date' => 'Date',
+        ];
+    }
+
+    /**
+     * Устанавливаем связь к какой новости относится данный комментарий
+     * @return \yii\db\ActiveQuery
+     */
+    public function getArticle()
+    {
+        return $this->hasOne(Article::className(), ['id' => 'article_id']);
+    }
+
+    /**
+     * Устанавливаем связь какой пользователь автор данного комментария
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUser()
+    {
+        return $this->hasOne(User::className(), ['id' => 'user_id']);
+    }
+
+    /**
+     * Форматируем дату в указанный вид и получаем её
+     * @return string
+     */
+    public function getDate()
+    {
+        return Yii::$app->formatter->asDate($this->date);
+    }
+
+    /**
+     * Разрешен ли данный комментарий или нет
+     * @return int
+     */
+    public function isAllowed()
+    {
+        return $this->status;
+    }
+
+    /**
+     * Разрешаем вид данного комментария
+     * @return bool
+     */
+    public function allow()
+    {
+        $this->status = self::STATUS_ALLOW;
+        return $this->save(false);
+    }
+
+    /**
+     * Запрещаем вид данного комментария
+     * @return bool
+     */
+    public function disallow()
+    {
+        $this->status = self::STATUS_DISALLOW;
+        return $this->save(false);
+    }
+}
